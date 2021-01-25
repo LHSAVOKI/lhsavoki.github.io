@@ -8,60 +8,21 @@
     noSupport: 'The browser does not support'
   },
   hexoVersion: '5.3.0'
-} </script><meta name="generator" content="Hexo 5.3.0"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">hua liu</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">4</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">1</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">四月的学习笔记</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right"></span></div><div id="site-info"><div id="site-title">四月的学习笔记</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2021/01/25/REUSE-ALV-GRID-DISPLAY-LVC%E4%B8%8EREUSE-ALV-GRID-DISPLAY%E7%9A%84%E5%8C%BA%E5%88%AB/">REUSE_ALV_GRID_DISPLAY_LVC与REUSE_ALV_GRID_DISPLAY有什么区别</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-01-25</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/SAP-ABAP/">SAP ABAP</a></span><div class="content"><ul>
-<li>REUSE_ALV_GRID_DISPLAY_LVC 是 REUSE_ALV_GRID_DISPLAY的升级版本，主要增加了单元格处理的功能，精确到一个单元格的可编辑状态</li>
-</ul>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/01/25/%E8%B0%83%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8/">调用浏览器</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-01-25</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/SAP-ABAP/">SAP ABAP</a></span><div class="content"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">DATA: l_url TYPE string.</span><br><span class="line">CALL METHOD cl_gui_frontend_services&#x3D;&gt;execute</span><br><span class="line">  EXPORTING</span><br><span class="line">    application &#x3D; &#39;CHROME.EXE&#39; &quot;浏览器</span><br><span class="line">    parameter   &#x3D; l_url</span><br><span class="line">    maximized   &#x3D; &#39;X&#39;</span><br><span class="line">  EXCEPTIONS</span><br><span class="line">    OTHERS      &#x3D; 1.</span><br></pre></td></tr></table></figure>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/01/25/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/">数据字典</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-01-25</time><div class="content"><ul>
-<li><h4 id="数据字典"><a href="#数据字典" class="headerlink" title="数据字典"></a>数据字典</h4><ul>
-<li>定义：是SAP定义和管理数据的主要工具，是ABAP工作台的重要部分<ul>
-<li>表<ol>
-<li>标准表：为系统自带的标准表，尽量不要直接操作它</li>
-<li>自定义表：<ul>
-<li>自定义创建的表，以Z,Y开头命名</li>
-<li>事务码：SE11</li>
-<li>首字段必须为MANDT </li>
-<li>工具栏 ‘技术设置’，进入设置自定义表的数据类以及大小和数据信息</li>
-<li>SM30 维护表数据 如没有表头 ，可能是字段数据元素没有- 设置字段标签 或者是设置的预定义类型</li>
-<li>暴力解决方法：se11  表   实用程序  表维护生成器  击屏幕号 布局   ；</li>
-<li>表调整   se14 激活并调整表数据</li>
-<li>表数据操作  sql语句（增删查改） </li>
-<li>FOR ALL ENTRIES IN（数据库表和内表串联）</li>
-<li>in  后面的内表不能为空</li>
-<li>使用该语句，对于最后得出的结果集系统会自动删除重复行（如果要保留重复行记录，要在SELECT语句中添加足够键值字段，以保证结果集中所需重复行不会被删除）；</li>
-<li>使用该语句时，除COUNT( * )以外的所有合计函数（MAX,MIN,AVG,SUM）都不能使用。</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>视图<ol>
-<li>数据库视图：通过内连接的方式把若干个数据库表连接起的表</li>
-<li>投影视图：数据来自一张表，用于屏蔽一些表字段，一般用于 保护视图使用</li>
-<li>维护视图：通过内连接的方式把若干个数据表连接起来并可进行操作的表</li>
-<li>帮助视图：通过内连接的方式若干个数据库表连接起来，一般用于创建搜索帮助的视图</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>数据元素、域<ul>
-<li>是字段的类型，包含基本类型、长度、值的范围、字段的描述</li>
-<li>域是数据元素的类型，包含基本类型、长度、值的范围</li>
-<li>基本类型是指日期、字符、数量</li>
-<li>八大基本数据类型</li>
-<li>域属于数据元素</li>
-</ul>
-</li>
-<li>搜索帮助、结构、锁对象<ul>
-<li>搜索帮助：以列表的形式显示屏幕对应字段的可能值以供选择填写</li>
-<li>结构：是一个数据对象，数据类型的参照，不进行数据擦</li>
-<li>锁对象：防止两个事务同时操作同个程序</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/01/25/good%20day/">哈哈</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-01-25</time><div class="content"><p>i am  boy  test</p>
-</div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2021 By hua liu</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+} </script><meta name="generator" content="Hexo 5.3.0"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">hua liu</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">4</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">1</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">四月的学习笔记</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">四月的学习笔记</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2021/01/25/REUSE-ALV-GRID-DISPLAY-LVC%E4%B8%8EREUSE-ALV-GRID-DISPLAY%E7%9A%84%E5%8C%BA%E5%88%AB/">REUSE_ALV_GRID_DISPLAY_LVC与REUSE_ALV_GRID_DISPLAY有什么区别</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-01-25</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/SAP-ABAP/">SAP ABAP</a></span><div class="content">
+REUSE_ALV_GRID_DISPLAY_LVC 是 REUSE_ALV_GRID_DISPLAY的升级版本，主要增加了单元格处理的功能，精确到一个单元格的可编辑状态
+
+</div><a class="more" href="/2021/01/25/REUSE-ALV-GRID-DISPLAY-LVC%E4%B8%8EREUSE-ALV-GRID-DISPLAY%E7%9A%84%E5%8C%BA%E5%88%AB/#more" style="margin-top: 14px">Read more</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/01/25/%E8%B0%83%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8/">调用浏览器</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-01-25</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/SAP-ABAP/">SAP ABAP</a></span><div class="content">12345678DATA: l_url TYPE string.CALL METHOD cl_gui_frontend_services&#x3D;&gt;execute  EXPORTING    application &#x3D; &#39;CHROME.EXE&#39; &quot;浏览器  ...</div><a class="more" href="/2021/01/25/%E8%B0%83%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8/#more" style="margin-top: 14px">Read more</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/01/25/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/">数据字典</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-01-25</time><div class="content">
+数据字典
+定义：是SAP定义和管理数据的主要工具，是ABAP工作台的重要部分
+表
+标准表：为系统自带的标准表，尽量不要直接操作它
+自定义表：
+自定义创建的表，以Z,Y开头命名
+事务码：SE11
+首字段必须为MANDT 
+工具栏 ‘技术设置’，进入设置自定义表的数据类以及大小和数据信息
+SM30 维 ...</div><a class="more" href="/2021/01/25/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/#more" style="margin-top: 14px">Read more</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2021/01/25/good%20day/">哈哈</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-01-25</time><div class="content">i am  boy  test
+</div><a class="more" href="/2021/01/25/good%20day/#more" style="margin-top: 14px">Read more</a><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2021 By hua liu</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')
