@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>abap 事件 | 十笔又二画的小站</title><meta name="keywords" content="SAP ABAP"><meta name="author" content="十笔又二画"><meta name="copyright" content="十笔又二画"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="事件流 INITIALIZATION(初始化) AT SELECTION-SCREEN(屏幕跳出前) START-OF-SELECTION(取数据) END-OF-SELECTION(展示数据) TOP-OF-PAGE(普通报表输出页头) END-OF-PAGE(普通报表输出页尾)     报表事件  INITIALIZATION. 初始化事件 只能用于报表事件 在选择屏幕出现之前执行，如果用逻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="abap 事件">
+<meta property="og:url" content="http://example.com/2021/01/27/abap-%E4%BA%8B%E4%BB%B6/index.html">
+<meta property="og:site_name" content="十笔又二画的小站">
+<meta property="og:description" content="事件流 INITIALIZATION(初始化) AT SELECTION-SCREEN(屏幕跳出前) START-OF-SELECTION(取数据) END-OF-SELECTION(展示数据) TOP-OF-PAGE(普通报表输出页头) END-OF-PAGE(普通报表输出页尾)     报表事件  INITIALIZATION. 初始化事件 只能用于报表事件 在选择屏幕出现之前执行，如果用逻">
+<meta property="og:locale">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-01-27T01:38:12.000Z">
+<meta property="article:modified_time" content="2021-01-27T02:28:41.990Z">
+<meta property="article:author" content="十笔又二画">
+<meta property="article:tag" content="SAP ABAP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/01/27/abap-%E4%BA%8B%E4%BB%B6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":20,"languages":{"author":"Author: 十笔又二画","link":"Link: ","source":"Source: 十笔又二画的小站","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-01-27 10:28:41'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/img/pictop.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">十笔又二画的小站</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">abap 事件</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-01-27T01:38:12.000Z" title="Created 2021-01-27 09:38:12">2021-01-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-01-27T02:28:41.990Z" title="Updated 2021-01-27 10:28:41">2021-01-27</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<li>事件流<ul>
+<li>INITIALIZATION(初始化)</li>
+<li>AT SELECTION-SCREEN(屏幕跳出前)</li>
+<li>START-OF-SELECTION(取数据)</li>
+<li>END-OF-SELECTION(展示数据)</li>
+<li>TOP-OF-PAGE(普通报表输出页头)</li>
+<li>END-OF-PAGE(普通报表输出页尾)</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><p>报表事件</p>
+<ul>
+<li>INITIALIZATION.<ul>
+<li>初始化事件</li>
+<li>只能用于报表事件</li>
+<li>在选择屏幕出现之前执行，如果用逻辑数据库的话，这里是唯一能够修改屏幕初始值的地方</li>
+<li>一般是在这里给选择屏幕中的字段赋值</li>
+</ul>
+</li>
+<li>START-OF-SELECTION.<ul>
+<li>一般在这里做报表程序的数据处理，取数据</li>
+<li>报表程序必须执行的事件，在进入第二屏幕之前触发</li>
+</ul>
+</li>
+<li>END-OF-SELECTION.<ul>
+<li>一般在这里展示数据</li>
+<li>第二屏幕显示完毕，结束处理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>选择屏幕事件<br> &lt;在INITIALIZATION和START-OF-SELECTION之间触发</p>
+<ul>
+<li>在这个事件里声明的都是局部变量</li>
+<li>在这个事件里响应的是屏幕上选择条件中的事件，如CHECKBOX的选择与否  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AT SELECTION-SCREEN &#123; OUTPUT &#125;</span><br><span class="line">                  | &#123; ON &#123;para|selcrit&#125; &#125;  &quot;在PARAMETER变化是触发的事件</span><br><span class="line">                  | &#123; ON END OF selcrit &#125;  &quot;SELECT-OPTION触发的事件,用于整个选择表输入结束后各行的检查</span><br><span class="line">                  | &#123; ON BLOCK block &#125;     &quot;框架的触发事件</span><br><span class="line">                  | &#123; ON RADIOBUTTON GROUP radi &#125; &quot;单选按钮事件</span><br><span class="line">                  | &#123; ON &#123;HELP-REQUEST|VALUE-REQUEST&#125; 选择的帮助(F1,F4)</span><br><span class="line">                                           &#123; FOR &#123;para|selcrit-low|selcrit-high&#125; &#125;</span><br><span class="line">                  | &#123; ON EXIT-COMMAND &#125;    &quot;当点击系统标准按钮，退出或者返回、取消的时候，触发这个事件</span><br><span class="line">                      | &#123; &#125;.</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>逻辑数据库事件</p>
+<ul>
+<li>如果报表中使用到逻辑数据库，则在START-OF-SELECTION 事件结束之后将触发逻辑数据库事件。 <ul>
+<li>GET node [LATE] [FIELDS f1 f2 …]. “获得逻辑数据库的值,必须先声明逻辑数据库<pre><code>      - LATE 选择逻辑数据库中上一级别数据源中的数据</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>列表事件</p>
+<ul>
+<li>在所有报表过程和选择屏幕事件结束之后，系统将开始触发列表事件，这些事件块控制列表输出状态、负责处理列表过程中的交互并响应用户行为。主要有以下四种列表事件块。<ul>
+<li>TOP-OF-PAGE 页眉控制，在每个新页面开始时触发</li>
+<li>END-OF-PAGE 页脚控制，在当前页面结束时触发。</li>
+<li>AT LINE-SELECTION 行选择控制，用户在选择某列表行时触发。</li>
+<li>AT USER-COMMAND 用户交互控制，用户选择某个GUI功能时触发。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>一般报表事件触发过程</p>
+<pre><code> - 首先，一旦用户开始运行类型为1的可执行程序，事件LOAD-OF-PROGRAM被触发（意味着其中的代码被执行），程序开始运行。
+ - 然后，报表程序中定义的初始化过程事件INITIALIZATION被触发。
+ - 如果程序中定义了选择屏幕，每次选择屏幕输出前，系统将触发AT SELECTION-SCREEN OUTPUT事件，运行环境将选择屏幕发送至显示服务器。如果用户在选择屏幕中输入某些值后执行某功能，系统将触发AT SELECTION-SCREEN事件。
+ - 选择屏幕始输入值之后，用户选择Execute功能，START-OF-SELECTION被触发。
+ - 如果报表中使用逻辑数据库，则接下来触发的事件为GET 和GET  LATE。逻辑数据库是一种数据源，为程序提供数据筛选和整理方式，在逻辑数据库内部，数据条目通过循环一行行读到程序，并可以在GET事件块内部进行处理。
+ - START-OF-SELECTION 事件或者逻辑数据库事件之后触发END-OF-SELECTION事件，如果有列表，一般在该事件之后输出列表，此后运行时环境将控制交给显示服务器。
+ - 列表输出过程中自动触发两个事件块：TOP-OF-PAGE 和END-OG-PAGE，其中TOP-OF-PAGE一般用于输出页眉、列表标题行等，END-OF-PAGE用于输出页脚。用户也可以选择Back按钮，回到选择屏幕中（但不会重新触发LOAD-OF-PROGRAM和INITIALIZATION事件），再次进行选择输入和数据选择，因此这也是一个反复循环的过程。
+ - 如果程序中定义有列表事件，则系统可以响应用户在列表屏幕中的行为，触发各种程序中交互事件。行选择交互事件（AT LINE-SELECTION）运行用户从列表中选择某行，并将触发相应的事件。如果用户选择其他自定义的功能代码（功能代码与相关菜单、按钮或键盘热键有关系，由程序员在屏幕GUI状态中定义），将触发用户指令交互，即AT USER-COMMAND事件块。</code></pre>
+</li>
+</ol>
+<p>&lt;需要指出的是，可执行程序也中允许使用CALL SCREEN语句调用自定义屏幕，并进行与对话程序类似的模块化处理。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">十笔又二画</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2021/01/27/abap-%E4%BA%8B%E4%BB%B6/">http://example.com/2021/01/27/abap-%E4%BA%8B%E4%BB%B6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SAP-ABAP/">SAP ABAP</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/01/26/%E4%BB%8E%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8%E5%8F%A6%E5%A4%96%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E7%9A%84perform/"><img class="next-cover" data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">从一个程序调用另外一个程序的perform</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2021/01/25/REUSE-ALV-GRID-DISPLAY-LVC与REUSE-ALV-GRID-DISPLAY的区别/" title="REUSE_ALV_GRID_DISPLAY_LVC与REUSE_ALV_GRID_DISPLAY有什么区别"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-25</div><div class="title">REUSE_ALV_GRID_DISPLAY_LVC与REUSE_ALV_GRID_DISPLAY有什么区别</div></div></a></div><div><a href="/2021/01/26/sap-快捷键整理/" title="sap 快捷键整理"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-26</div><div class="title">sap 快捷键整理</div></div></a></div><div><a href="/2021/01/26/APPEND-lines/" title="append lines of"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-26</div><div class="title">append lines of</div></div></a></div><div><a href="/2021/01/26/从一个程序调用另外一个程序的perform/" title="从一个程序调用另外一个程序的perform"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-26</div><div class="title">从一个程序调用另外一个程序的perform</div></div></a></div><div><a href="/2021/01/26/通过BAPI方式展示长文本/" title="通过BAPI方式展示长文本"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-26</div><div class="title">通过BAPI方式展示长文本</div></div></a></div><div><a href="/2021/01/25/调用浏览器/" title="调用浏览器"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-25</div><div class="title">调用浏览器</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="/img/pictop.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">十笔又二画</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/LHSAVOKI/lhsavoki.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lhsavoki" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/27/abap-%E4%BA%8B%E4%BB%B6/" title="abap 事件">abap 事件</a><time datetime="2021-01-27T01:38:12.000Z" title="Created 2021-01-27 09:38:12">2021-01-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/26/%E4%BB%8E%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8%E5%8F%A6%E5%A4%96%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E7%9A%84perform/" title="从一个程序调用另外一个程序的perform">从一个程序调用另外一个程序的perform</a><time datetime="2021-01-26T10:09:39.000Z" title="Created 2021-01-26 18:09:39">2021-01-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/26/sap-%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%95%B4%E7%90%86/" title="sap 快捷键整理">sap 快捷键整理</a><time datetime="2021-01-26T09:43:35.000Z" title="Created 2021-01-26 17:43:35">2021-01-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/26/APPEND-lines/" title="append lines of">append lines of</a><time datetime="2021-01-26T09:19:38.000Z" title="Created 2021-01-26 17:19:38">2021-01-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/26/%E9%80%9A%E8%BF%87BAPI%E6%96%B9%E5%BC%8F%E5%B1%95%E7%A4%BA%E9%95%BF%E6%96%87%E6%9C%AC/" title="通过BAPI方式展示长文本">通过BAPI方式展示长文本</a><time datetime="2021-01-26T08:31:00.000Z" title="Created 2021-01-26 16:31:00">2021-01-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 十笔又二画</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'R3bd6hAWjLzjTk3Q3YUolbPt-gzGzoHsz',
+      appKey: 'UgcKL1LwU3TwT4QmCxNGCiY8',
+      placeholder: '記得留下你的暱稱和郵箱....可以快速收到回復（航狗不许评论）',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: 'emoji CDN',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_親親":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再見":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_發怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_發財":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可愛":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_嘔吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_壞笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尷尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_驚嚇":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="I,LOVE,YOU" data-fontsize="15px" data-random="false" async="async"></script><script src="//code.tidio.co/6f8wlfmtqw71vx3azx1hhnixv9fvdtg7.js" async="async"></script></div></body></html>
